@@ -6,6 +6,7 @@ import Login from './components/Login';
 import SearchMovies from './components/SearchMovies';
 import Register from './components/Register';
 import './App.css';
+import Playlist from './components/Playlist';
 import { Home } from './components/Home';
 
 const { Header, Footer, Content } = Layout;
@@ -34,10 +35,10 @@ function App() {
 								<span>My movies</span>
 							</Link>
 						</Menu.Item>
-						<Menu.Item key='3'>
-							<Link to='/search'>
-								<Icon type='play-circle' />
-								<span>Search Movies</span>
+						<Menu.Item key='4'>
+							<Link to='/playlist'>
+								<Icon type='play-square' />
+								<span>Ma playlist</span>
 							</Link>
 						</Menu.Item>
 					</Menu>
@@ -53,7 +54,7 @@ function App() {
 							<Route path='/login' component={Login} />
 							<Route path='/register' component={Register} />
 							<Route path='/home' component={Home} />
-							<Route path='/search' component={SearchMovies} />
+							<Route path='/playlist' component={Playlist} />
 						</Switch>
 					</div>
 				</Content>
