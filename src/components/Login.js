@@ -21,7 +21,7 @@ export default function Login () {
 		});
 	};
 
-	function go(){
+	function register(){
 		history.push('/register');
 	}
 
@@ -58,7 +58,7 @@ export default function Login () {
 				<Button type="primary" htmlType="submit"  className="login-form-button">
 					Log in
 				</Button>
-				Or <a onClick={go}>register now!</a>
+				Or <a onClick={register}>register now!</a>
 			</Form.Item>
 		</Form>
 	);

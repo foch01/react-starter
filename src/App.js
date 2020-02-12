@@ -6,7 +6,6 @@ import { Layout, Icon, Menu, Breadcrumb } from 'antd';
 import  Login  from './components/Login';
 import Register from './components/Register';
 import { Home } from './components/Home';
-
 import './App.css';
 
 const { Header, Footer, Content } = Layout;
