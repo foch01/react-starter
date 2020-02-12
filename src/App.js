@@ -8,6 +8,7 @@ import Register from './components/Register';
 import './App.css';
 import Playlist from './components/Playlist';
 import { Home } from './components/Home';
+import { PrivateRoute } from './components/PrivateRoute';
 
 const { Header, Footer, Content } = Layout;
 
@@ -32,7 +33,13 @@ function App() {
 						<Menu.Item key='2'>
 							<Link to='/home'>
 								<Icon type='play-circle' />
-								<span>My movies</span>
+								<span>Home</span>
+							</Link>
+						</Menu.Item>
+						<Menu.Item key='3'>
+							<Link to='/search'>
+								<Icon type='play-square' />
+								<span>Rechercher un film</span>
 							</Link>
 						</Menu.Item>
 						<Menu.Item key='4'>
@@ -54,7 +61,8 @@ function App() {
 							<Route path='/login' component={Login} />
 							<Route path='/register' component={Register} />
 							<Route path='/home' component={Home} />
-							<Route path='/playlist' component={Playlist} />
+							<PrivateRoute path='/playlist' component={Playlist} />
+							<Route path='/search' component={SearchMovies} />
 						</Switch>
 					</div>
 				</Content>
