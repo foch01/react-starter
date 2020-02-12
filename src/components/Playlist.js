@@ -3,6 +3,7 @@ import { List, Icon } from 'antd';
 import axios from 'axios';
 import 'antd/dist/antd.css';
 import { handleResponse } from '../helpers/handle-response';
+import { authHeader } from '../helpers/auth-header';
 
 export default function Playlist() {
 	const IconText = ({ type, text }) => (
@@ -15,7 +16,7 @@ export default function Playlist() {
 
 	const requestOptions = {
 		method: 'GET',
-		headers: { 'Content-Type': 'application/json' },
+		headers: authHeader(),
 	};
 
 	useEffect(() => {
