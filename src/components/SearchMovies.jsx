@@ -24,7 +24,7 @@ function SearchMovies(props) {
                         const sortedData = data.sort((a, b) => b.vote_average - a.vote_average);
                         setResults(sortedData);
                     })
-                    .catch(console.log);
+                    .catch();
             }
         });
     };
@@ -38,13 +38,13 @@ function SearchMovies(props) {
                 method: 'POST',
                 headers: authHeader(),
                 body: JSON.stringify({
-                    "idAPI": id
+                    idAPI: id
                 }),
             };
 
             return fetch(`http://localhost:3001/api/user/movies`, requestOptions)
                 .then(data => {
-                    console.log(data);
+
                 });
         }
     ;

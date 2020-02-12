@@ -4,7 +4,10 @@ export function authHeader() {
 	const user = authenticationService.currentUser;
 	if (user) {
 		const token = user.slice(1, -1);
-		return { Authorization: `Bearer ${token}` };
+		return {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${token}`,
+		};
 	} else {
 		return {};
 	}
