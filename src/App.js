@@ -4,20 +4,13 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { Layout, Icon, Menu, Breadcrumb } from 'antd';
 import Login from './components/Login';
 import SearchMovies from './components/SearchMovies';
-import { Register } from './components/Register';
+import Register from './components/Register';
+import './App.css';
 import { Home } from './components/Home';
 
-import './App.css';
-
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Footer, Content } = Layout;
 
 function App() {
-	const [toggle, setToggle] = useState({ collapsed: false });
-
-	const toggleCollapsed = () => {
-		setToggle({ collapsed: !toggle.collapsed });
-	};
-
 	return (
 		<Router>
 			<Layout>

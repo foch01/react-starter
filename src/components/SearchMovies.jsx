@@ -3,6 +3,7 @@ import Form from "antd/es/form";
 import Input from "antd/es/input";
 import Icon from "antd/es/icon";
 import {Button} from "antd";
+import {authHeader} from "../helpers/auth-header";
 
 function SearchMovies(props) {
     const [search, setSearch] = useState('');
@@ -12,7 +13,12 @@ function SearchMovies(props) {
         e.preventDefault();
         props.form.validateFields((err, values) => {
             if (search) {
-                fetch('http://localhost:3001/api/movies/search?query=' + search)
+                const requestOptions = {
+                    method: 'GET',
+                    headers: authHeader()
+                };
+
+                fetch('http://localhost:3001/api/movies/search?query=' + search, requestOptions)
                     .then(res => res.json())
                     .then((data) => {
                         const sortedData = data.sort((a, b) => b.vote_average - a.vote_average);
@@ -30,9 +36,9 @@ function SearchMovies(props) {
     const addMovie = id => {
             const requestOptions = {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: authHeader(),
                 body: JSON.stringify({
-                    id
+                    "idAPI": id
                 }),
             };
 
