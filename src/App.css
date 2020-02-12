@@ -51,3 +51,42 @@
 .login-form-button {
   width: 100%;
 }
+
+
+li.movie {
+  list-style-type: none;
+  width: 100%;
+  display: flex;
+}
+.movie-poster {
+  margin-top: 25px;
+  height: 300px;
+  width: 200px;
+  float: left;
+  margin-right: 30px;
+}
+.movie-text {
+  margin-top: 80px;
+  width: 50%;
+}
+.movie-title {
+  font-weight: bold;
+  font-size: 24px;
+  color: black;
+}
+.movie-desc {
+  font-style: italic;
+}
+.movie-add {
+  font-size: 25px;
+  color: #d50000;
+  font-weight: bold;
+}
+.movie-rating {
+  font-size: 18px;
+  font-style: italic;
+}
+.rating {
+  color: #1faa00;
+  font-weight: bold;
+}
