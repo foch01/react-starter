@@ -1,6 +1,4 @@
-import React from 'react';
-
-import { authenticationService } from '../services/authentication.service';
+import React, { useState, useEffect } from 'react';
 
 function Home(props) {
 	return <h1>Home works</h1>;
