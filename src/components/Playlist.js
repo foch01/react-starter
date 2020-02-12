@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { List, Avatar, Icon } from 'antd';
+import { List, Icon } from 'antd';
+import axios from 'axios';
 import 'antd/dist/antd.css';
+import { handleResponse } from '../helpers/handle-response';
 
 export default function Playlist() {
 	const IconText = ({ type, text }) => (
@@ -10,8 +12,20 @@ export default function Playlist() {
 		</span>
 	);
 	const [movies, setMovies] = useState([]);
+
+	const requestOptions = {
+		method: 'GET',
+		headers: { 'Content-Type': 'application/json' },
+	};
+
 	useEffect(() => {
 		// TODO API
+		console.log('ici');
+		axios
+			.get('http://localhost:3001/api/user/playlist', requestOptions)
+			.then(res => {
+				console.log('hello', res);
+			});
 		const listMovies = [
 			{
 				popularity: 23.032,
@@ -202,12 +216,6 @@ export default function Playlist() {
 	}, []);
 	return (
 		<>
-			<h1>Playlist works</h1>
-			<ul>
-				{movies.length > 0
-					? movies.map(b => <li key={b.id}>{b.title}</li>)
-					: ''}
-			</ul>
 			<List
 				itemLayout='vertical'
 				size='large'
@@ -220,15 +228,23 @@ export default function Playlist() {
 				dataSource={movies}
 				footer={
 					<div>
-						<b>ant design</b> footer part
+						<b>Movie House</b>
 					</div>
 				}
 				renderItem={item => (
 					<List.Item
 						key={item.title}
 						actions={[
-							<IconText type='star-o' text='156' key='list-vertical-star-o' />,
-							<IconText type='like-o' text='156' key='list-vertical-like-o' />,
+							<IconText
+								type='star-o'
+								text={item.vote_average}
+								key='list-vertical-star-o'
+							/>,
+							<IconText
+								type='like-o'
+								text={item.vote_count}
+								key='list-vertical-like-o'
+							/>,
 							<IconText type='message' text='2' key='list-vertical-message' />,
 						]}
 						extra={
