@@ -4,15 +4,13 @@ function login(username, password) {
 	const requestOptions = {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify({ username, password }),
+		body: JSON.stringify({ email : username, password }),
 	};
 
-	return fetch(`http://localhost:3001/users/authenticate`, requestOptions)
+	return fetch(`http://localhost:3001/login`, requestOptions)
 		.then(handleResponse)
 		.then(user => {
-			// store user details and jwt token in local storage to keep user logged in between page refreshes
 			localStorage.setItem('currentUser', JSON.stringify(user));
-
 			return user;
 		});
 }
@@ -25,8 +23,24 @@ function getCurrentUser() {
 	return JSON.parse(localStorage.getItem('currentUser'));
 }
 
+function register (user) {
+	const requestOptions = {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(user),
+	};
+
+	return fetch(`http://localhost:3001/users`, requestOptions)
+		.then(handleResponse)
+		.then(user => {
+			console.log(JSON.stringify(user));
+			return user;
+		});
+}
+
 export const authenticationService = {
 	login,
 	logout,
+	register,
 	currentUser: getCurrentUser(),
 };
