@@ -13,7 +13,6 @@ export default function Login() {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		console.log(`${credentials.name}< ===== >${credentials.password}`);
 		authenticationService
 			.login(credentials.name, credentials.password)
 			.then(r => {
