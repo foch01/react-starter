@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import 'antd/dist/antd.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { Layout, Icon, Menu, Breadcrumb } from 'antd';
+import { Layout, Icon, Menu} from 'antd';
+import './App.css';
 import Login from './components/Login';
 import SearchMovies from './components/SearchMovies';
 import Register from './components/Register';
-import './App.css';
 import Playlist from './components/Playlist';
-import { Home } from './components/Home';
-import { PrivateRoute } from './components/PrivateRoute';
+import BestMovies from './components/BestMovies';
+import {PrivateRoute} from "./components/PrivateRoute";
+import {authenticationService} from "./services/authentication.service";
 
 const { Header, Footer, Content } = Layout;
 
@@ -24,14 +25,20 @@ function App() {
 						defaultSelectedKeys={['2']}
 						style={{ lineHeight: '64px' }}
 					>
-						<Menu.Item key='1'>
+						<Menu.Item key='0'>
 							<Link to='/login'>
 								<Icon type='login' />
 								<span>Log in&nbsp;&nbsp;&nbsp;&nbsp;</span>
 							</Link>
 						</Menu.Item>
+						<Menu.Item key='1' onClick={authenticationService.logout}>
+							<Link to='/login'>
+								<Icon type='logout' />
+								<span>Log out&nbsp;&nbsp;&nbsp;&nbsp;</span>
+							</Link>
+						</Menu.Item>
 						<Menu.Item key='2'>
-							<Link to='/home'>
+							<Link to='/'>
 								<Icon type='play-circle' />
 								<span>Home</span>
 							</Link>
@@ -51,23 +58,18 @@ function App() {
 					</Menu>
 				</Header>
 				<Content style={{ minHeight: 1000, padding: '0 50px', marginTop: 64 }}>
-					<Breadcrumb style={{ margin: '16px 0' }}>
-						<Breadcrumb.Item>Home</Breadcrumb.Item>
-						<Breadcrumb.Item>List</Breadcrumb.Item>
-						<Breadcrumb.Item>App</Breadcrumb.Item>
-					</Breadcrumb>
 					<div style={{ padding: 24, minHeight: 380 }}>
 						<Switch>
 							<Route path='/login' component={Login} />
 							<Route path='/register' component={Register} />
-							<Route path='/home' component={Home} />
 							<PrivateRoute path='/playlist' component={Playlist} />
-							<Route path='/search' component={SearchMovies} />
+							<PrivateRoute path='/search' component={SearchMovies} />
+							<Route path='/' component={BestMovies} />
 						</Switch>
 					</div>
 				</Content>
 				<Footer style={{ textAlign: 'center' }}>
-					Ant Design ©2018 Created by Ant UED
+					movie house
 				</Footer>
 			</Layout>
 		</Router>
