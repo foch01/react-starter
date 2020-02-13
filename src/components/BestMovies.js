@@ -1,30 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { List, Icon } from 'antd';
-import axios from 'axios';
-import 'antd/dist/antd.css';
-import { authHeader } from '../helpers/auth-header';
+import React, { useState, useEffect } from 'react';
+import {List, Icon } from "antd";
+import axios from "axios";
 
-export default function Playlist() {
+export default function BestMovies() {
+	const [movies, setMovies] = useState([]);
+
 	const IconText = ({ type, text }) => (
 		<span>
 			<Icon type={type} style={{ marginRight: 8 }} />
 			{text}
 		</span>
 	);
-	const [movies, setMovies] = useState([]);
-
-	const requestOptions = {
-		method: 'GET',
-		headers: authHeader(),
-	};
 
 	useEffect(() => {
 		axios
-			.get('http://localhost:3001/api/user/playlist', requestOptions)
+			.get('http://localhost:3001/movies/top_rated')
 			.then(res => {
 				setMovies(res.data);
 			});
 	}, []);
+
 
 	return (
 		<>
@@ -72,6 +67,6 @@ export default function Playlist() {
 					</List.Item>
 				)}
 			/>
-		</>
-	);
+		</>);
+
 }
